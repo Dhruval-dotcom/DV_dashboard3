@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard</title>
+
+  <!-- bootstrap css  -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+
+  <!-- icon cdn  -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
+
+
+  <!-- custom css  -->
+  <link rel="stylesheet" href="1.css">
+
+
+
+  <!-- google chart loader -->
+  <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+
+
+  <!-- area chart  -->
+  <script type="text/javascript">
+  
+    google.charts.load('current', {'packages':['corechart']});
+    google.charts.setOnLoadCallback(drawChart);
+
+    function drawChart() {
+      var data = google.visualization.arrayToDataTable([
+        ['Year', 'Java', 'Javascript','python','php'],
+        ['2010',  29.66,    20.45 ,9.96, 17.38 ],
+        ['2015',  26.73,    22.22,14.5,10.48],
+        ['2019',  22.39,     23.18,24.27,7.19]           
+      ]);
+
+      var options = {
+        title: '%Use of programming language over the years  ',
+        hAxis: {title: 'Year',  titleTextStyle: {color: '#333'}},
+        vAxis: {minValue: 0}
+      };
+
+      var chart = new google.visualization.AreaChart(document.getElementById('ch1'));
+      chart.draw(data, options);
+    }
+  </script>
+
+  <!-- coloumn chart  -->
+  <script type="text/javascript">
+      google.charts.load("current", {packages:['corechart']});
+      google.charts.setOnLoadCallback(drawChart);
+      function drawChart() {
+        var data = google.visualization.arrayToDataTable([
+          ["Language", "% Users", { role: "style" } ],
+          ["Python", 13.58, "color: blue"],
+          ["C", 12.44, "color: cyan"],
+          ["Java", 10.66, "color: magenta"],
+          ["C++", 8.29, "color: red"],
+          ["C#", 5.68, "color: yellow"],
+          ["Basic Visual", 4.74, "color: aqua"],
+          ["Javascript", 2.09, "color: yellow"],
+          ["PHP", 1.4, "color: aqua"]
+        ]);
+  
+        var view = new google.visualization.DataView(data);
+        view.setColumns([0, 1,
+                          { calc: "stringify",
+                            sourceColumn: 1,
+                            type: "string",
+                            role: "annotation" },
+                          2]);
+  
+        var options = {
+          title: "% users of different programming languages",
+          width: 400,
+          height: 300,
+          bar: {groupWidth: "95%"},
+          legend: { position: "none" },
+        };
+        var chart = new google.visualization.ColumnChart(document.getElementById("ch2"));
+        chart.draw(view, options);
+    }
+  </script>
+
+  <!-- pie chart -->
+  <script type="text/javascript">
+      google.charts.load('current', {'packages':['corechart']});
+      google.charts.setOnLoadCallback(drawChart);
+
+      function drawChart() {
+
+        var data = google.visualization.arrayToDataTable([
+          ['Framework', 'Number of users'],
+          ['Ruby', 14352],
+          ['ExpressJs', 6254],
+          ['.NET Core', 5862],
+          ['Flask', 4685],
+          ['Laravel', 3347],
+          ['Symfony', 4598],
+          ['Spring',3828]
+        ]);
+
+        var options = {
+            
+          title: 'popular Backend framework for web development users',
+          is3D: true,
+        };
+
+        var chart = new google.visualization.PieChart(document.getElementById('ch3'));
+
+        chart.draw(data, options);
+      }
+  </script>
+
+  <!-- wordtree chart -->
+  <script type="text/javascript">
+      google.charts.load('current', {packages:['wordtree']});
+      google.charts.setOnLoadCallback(drawChart);
+
+      function drawChart() {
+        var data = google.visualization.arrayToDataTable(
+          [ ['Phrases'],
+            ['Computer languages Web Programming Language Frontend HTML'],
+            ['Computer languages Web Programming Language Frontend styling CSS'],
+            ['Computer languages Web Programming Language Frontend styling Bootsrap'],
+            ['Computer languages Web Programming Language Frontend styling Skeleton'],
+            ['Computer languages Web Programming Language Frontend styling Bulma'],
+            ['Computer languages Web Programming Language Frontend styling Foundation'],
+            ['Computer languages Web Programming Language Backend nodejs'],
+            ['Computer languages Web Programming Language Backend PHP'],
+            ['Computer languages Web Programming Language Backend Python'],
+            ['Computer languages Web Programming Language Backend Java'],
+            ['Computer languages Web Programming Language Backend Ruby'],
+            ['Computer languages Programming C'],
+            ['Computer languages Programming C++'],
+            ['Computer languages Programming Core Java'],
+            ['Computer languages Programming Python'],
+            ['Computer languages Android Development Java'],
+            ['Computer languages Android Development Kotlin'],
+            ['Computer languages Android Development Swift'],
+            ['Computer languages Android Development Objective C'],
+            ['Computer languages Android Development React Native']
+          ]
+        );
+
+        var options = {
+          title: 'Types of different languages',
+          wordtree: {
+            format: 'implicit',
+            word: 'Computer'
+          }
+        };
+
+        var chart = new google.visualization.WordTree(document.getElementById('ch4'));
+        chart.draw(data, options);
+      }
+  </script>
+
+  <!-- candelstick chart -->
+  <script type="text/javascript">
+      google.charts.load('current', {'packages':['corechart']});
+      google.charts.setOnLoadCallback(drawChart);
+
+      function drawChart() {
+        var data = google.visualization.arrayToDataTable([
+          ['Java', 20.45, 22.22, 23.18, 21],
+          ['Javascript', 29.66, 26.73, 22.39, 20],
+          ['C++', 11.46, 8.40, 6.62, 6.1],
+          ['Python', 9.96, 14.50, 24.27, 23.2],
+          ['PHP', 17.38, 10.68, 7.19, 6.98] 
+          // Treat first row as data as well.
+        ], true);
+
+        var options = {
+          legend:'none',
+          title:'analysis of users of different languages'
+        };
+
+        var chart = new google.visualization.CandlestickChart(document.getElementById('ch5'));
+
+        chart.draw(data, options);
+      }
+  </script>
+
+  <!-- curve chart -->
+  <script type="text/javascript">
+      google.charts.load('current', {'packages':['line']});
+      google.charts.setOnLoadCallback(drawChart);
+
+      function drawChart() {
+
+      var data = new google.visualization.DataTable();
+      data.addColumn('number', 'Year');
+      data.addColumn('number', 'Java');
+      data.addColumn('number', 'Javascript');
+      data.addColumn('number', 'python');
+
+      data.addRows([
+        
+        [10,  29.66,20.45 ,9.96],
+          [15,  26.73,22.22,14.5],
+          [20,  22.39,23.18,24.27] 
+      ]);
+
+      var options = {
+        chart: {
+          title: '% of users using java javascript and python Over the years',
+          subtitle: 'in 2010,2015 and 2019'
+        },
+        width: 500,
+        height: 360
+      };
+
+      var chart = new google.charts.Line(document.getElementById('ch6'));
+
+      chart.draw(data, google.charts.Line.convertOptions(options));
+    }
+  </script>
+
+
+
+
+  <!-- gaming dashboard -->
+
+  <!-- donutchart -->
+  <script type="text/javascript">
+    google.charts.load("current", {packages:["corechart"]});
+    google.charts.setOnLoadCallback(drawChart);
+    function drawChart() {
+      var data = google.visualization.arrayToDataTable([
+      ['Game', 'Number of users'],
+        ['Action',     21.9],
+        ['Shooter',      25.9],
+        ['Sport',11.6],
+        ['Role playing',  11.3],
+        ['Adventure', 9.1],
+        ['fighting',    6],
+        ['Racing',6.4]
+      ]);
+
+      var options = {
+        title: '% number of users of different types Games',
+        pieHole: 0.5,
+      };
+
+      var chart = new google.visualization.PieChart(document.getElementById('ch7'));
+      chart.draw(data, options);
+    }
+  </script>
+
+  <!-- geochart -->
+
+  <script type="text/javascript">
+    google.charts.load('current', {
+      'packages':['geochart'],
+    });
+    google.charts.setOnLoadCallback(drawRegionsMap);
+
+    function drawRegionsMap() {
+      var data = google.visualization.arrayToDataTable([
+        ['Country', 'Market (Earning) from Game in million$'],
+        ['Germany', 46.1],
+        ['Japan', 75.6],
+        ['Korea', 33],
+        ['United Kingdom', 37.7],
+        ['France', 38.1],
+        ['Canada', 21],
+        ['Italy',36.5],
+        ['Spain',29.7],
+        ['India',38]
+      ]);
+
+      var options = {
+          title: 'Market of game in different countries',
+      };
+
+      var chart = new google.visualization.GeoChart(document.getElementById('ch8'));
+
+      chart.draw(data, options);
+    }
+  </script>
+
+  <!-- bar chart  -->
+  <script type="text/javascript">
+        
+    google.charts.load("current", {packages:["corechart"]});
+    google.charts.setOnLoadCallback(drawChart);
+    function drawChart() {
+      var data = google.visualization.arrayToDataTable([
+    ["Game", "% Users", { role: "style" } ],
+    ["Words with friends", 10.4, "color: blue"],
+    ["Temple Run", 9.9, "color: cyan"],
+    ["Touch Hockey", 8.6, "color: yellow"],
+    ["Flow", 6, "color: magenta"],
+    ["Angry Bird", 5.2, "color: aqua"],
+    ["Subway Surfers", 4.5, "color: red"],
+    ["Fun Run", 4.1, "color: yellow"],
+    ["Bike Race", 3.9, "color: aqua"]
+      ]);
+
+      var view = new google.visualization.DataView(data);
+      view.setColumns([0, 1,
+                      { calc: "stringify",
+                        sourceColumn: 1,
+                        type: "string",
+                        role: "annotation" },
+                      2]);
+
+      var options = {
+        title: "% Users for different Games",
+        width: 400,
+        height: 300,
+        bar: {groupWidth: "95%"},
+        legend: { position: "none" },
+      };
+      var chart = new google.visualization.BarChart(document.getElementById("ch10"));
+      chart.draw(view, options);
+  }
+  </script>
+
+
+  <!-- scatter chart -->
+
+  <script type="text/javascript">
+    google.charts.load('current', {'packages':['corechart']});
+    google.charts.setOnLoadCallback(drawChart);
+
+    function drawChart() {
+      var data = google.visualization.arrayToDataTable([
+        ['Market', 'Gamers'],
+        [ 22.1,      75.6],
+        [ 7.55,      33],
+        [ 5.87,     46.1],
+        [ 5.3,      37.7],
+        [ 4.13,      38.1],
+        [ 3.69,    21]
+      ]);
+
+      var options = {
+        title: 'Market Vs Number of Gamers analysis Over the countries',
+        hAxis: {title: 'Market', minValue: 0, maxValue: 15},
+        vAxis: {title: 'Gamers', minValue: 0, maxValue: 15},
+        legend: 'none'
+      };
+
+      var chart = new google.visualization.ScatterChart(document.getElementById('ch9'));
+
+      chart.draw(data, options);
+    }
+  </script>
+
+
+    
+
+
+</head>
+<body>
+
+
+    <div class="container">
+
+        <h2 class="row d-flex justify-content-evenly" id="ch1_head">Programming Language Dashboard</h2>
+
+
+        <div class="row d-flex justify-content-evenly">
+
+            <!-- area chart -->
+            <div id="ch1" class="charts col-3" style="width: 500px; height: 300px;"></div>
+
+            <!-- coloumn chart -->
+            <div id="ch2" class="charts col-3" style="width: 400px;" ></div>
+
+            <!-- pie chart -->
+            <div id="ch3" class="charts col-3" style="width: 400px; height: 300px;" ></div>
+
+            <!-- wordtree -->
+            <div id="ch4" class="charts col-12" style=" width: 1500px; height: 300px;" ></div>
+
+            <!-- candelstick chart -->
+            <div id="ch5" class="charts col-5" style="height: 360px;"  ></div>
+
+            <!-- line chart  -->
+           <div id="ch6" class="charts col-5" style="height: 360px;"  ></div>
+        </div>
+
+
+        <h2 class="row d-flex justify-content-center" id="ch2_head" onclick=" f3() " ondblclick="f4()">
+          <p >Gaming Dashboard <i class="bi bi-caret-right-fill" id="icn"></i></p>
+        </h2>
+
+        <div class="row d-flex justify-content-center">
+
+          <!-- donut -->
+          <div id="ch7" class="charts col-5" style="height: 300px;"></div>
+
+          <!-- geo  -->
+          <div id="ch8" class="charts col-5"></div>
+
+          <!-- scatter -->
+          <div id="ch9" class="charts col-5"></div>
+
+          <!-- bar -->
+          <div id="ch10" class="charts col-5"></div>
+
+        </div>
+
+
+
+    </div>
+
+
+
+    <!-- custom js  -->
+    <script src="1.js"></script>
+
+
+    <!-- bootstrap js  -->
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+
+</body>
+</html>
